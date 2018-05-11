@@ -1,0 +1,30 @@
+<template>
+	<div id="block" on-click="toggle" class="{{ isToggle ? 'change' : ''}}">	
+	</div>
+</template>
+
+<script>
+export default{
+	initData() {
+		return{
+			isToggle: 0
+		}
+	},
+	toggle(){
+		this.data.set('isToggle', 1)
+	}
+}
+</script>
+
+<style>
+#block{
+	background-color: red;
+	width: 100px;
+	height: 100px;
+}
+#block.change{
+	background-color: blue;
+	width: 100px;
+	height: 100px;
+}
+</style>
