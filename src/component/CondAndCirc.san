@@ -1,0 +1,81 @@
+<template>
+	<div>
+		<div class="button" on-click='show'>添加</div>
+		<div s-if="input" on-keydown="add">
+			<input type="text" placeholder="姓名" value="{= inputName =}">
+		</div>
+		<table>
+			<tr>
+				<th>姓名</th>
+				<th>审核状态</th>
+				<th>操作</th>
+			</tr>
+			<tr s-for="item, index in items">
+				<td>{{item.name}}</td>
+				<td>{{item.state}}</td>
+				<td>
+					<div class="button" s-if="item.state === '待审核'" on-click="changeState(index)">审核</div>
+					<div class="button" s-else on-click="rm(index)">删除</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</template>
+
+<script>
+export default {
+	initData() {
+		return {
+			items: [
+				{
+					name: "张三",
+					state: "合格"
+				},{	
+					name: "李四",
+					state: "不合格"
+				},{	
+					name: "王五",
+					state: "待审核"
+				},{	
+					name: "赵六",
+					state: "待审核"
+				},{	
+					name: "孙七",
+					state: "待审核"
+				}
+			],
+			input: 0,		//控制输入框显示或隐藏
+			inputName: ""	//输入框的值（双向绑定）
+		}
+	},
+	show(){		//显示输入框
+		this.data.set('input', 1)
+	},
+	add(e){		//添加一条记录
+		if(e.keyCode == 13){
+			console.log(this.data.get('inputName'))
+			if(this.data.get('inputName')){
+				this.data.push('items', {
+					name: this.data.get('inputName').trim(),
+					state: "待审核"
+				})
+			}
+			this.data.set('inputName', '')
+			this.data.set('input', 0)
+		}
+	},
+	rm(index){		//删除一条记录
+		this.data.removeAt('items', index)
+	},
+	changeState(index){		//改变一条记录的状态
+		this.data.set('items['+index+'].state', '合格')
+	}
+}
+</script>
+
+<style>
+th,td{
+	border: 1px solid black;
+	padding: 2px 5px;
+}
+</style>
