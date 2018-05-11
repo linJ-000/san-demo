@@ -1,0 +1,35 @@
+<template>
+	<div class="highParent">
+		<base-parent></base-parent>
+		我是更高层父组件：{{ info }}
+	</div>
+</template>
+
+<script>
+import baseParent from './Base/BaseParentComponent.san'
+export default{
+	initData() {
+		return{
+			info: '我也静静等待用户输入'
+		}
+	},
+	components: {
+		'base-parent': baseParent
+	},
+	messages: {
+		'parent-post':function(arg){
+			let info = arg.value
+			if(info)
+				this.data.set('info', info)
+			else
+				this.data.set('info', '我也静静等待用户输入')
+		}
+	}
+}
+</script>
+
+<style>
+.highParent{
+	color: lightblue;
+}
+</style>

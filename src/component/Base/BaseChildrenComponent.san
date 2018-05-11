@@ -1,0 +1,21 @@
+<template>
+	<div>
+		子组件：
+		<input type="text" name="" value="{= value =}">
+		<button on-click='post'>通知父组件</button>
+	</div>
+</template>
+
+<script>
+export default{
+	initData() {
+		return{
+			value: ''
+		}
+	},
+	post(){
+		let val = this.data.get('value')
+		this.dispatch('children-input', val)
+	}
+}
+</script>
