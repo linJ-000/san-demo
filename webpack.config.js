@@ -16,12 +16,12 @@ const config = {
 		})
 	],
 	output: {
-		filename: '[name].bundle.js',
+		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	module: {
 		rules: [{
-			test: /\.san/,
+			test: /\.san$/,
 			use: ['san-loader']
 		}, {
 			test: /\.css$/,
@@ -49,6 +49,11 @@ const config = {
 					plugins: ['@babel/plugin-transform-runtime']
 				}
 			}
+		},{
+			test: /\.html$/,
+			use: [
+				'html-loader'
+			]
 		}]
 	},
 	resolve: {
@@ -62,7 +67,7 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
 	//production config
-	config.devtool = 'source-map'
+	//config.devtool = 'source-map'
 	config.plugins.push(
 		new UglifyJSPlugin({
 			sourceMap: true
@@ -76,7 +81,8 @@ if (process.env.NODE_ENV === 'production') {
 	config.devtool = 'inline-source-map'
 	config.devServer = {
 		contentBase: './dist',
-		hot: true
+		hot: true,
+		hotOnly: true
 	}
 	config.plugins.push(
 		new webpack.DefinePlugin({

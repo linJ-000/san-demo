@@ -1,0 +1,51 @@
+<template>
+	<div>
+		<div>
+			<input type="text" value="{= name =}" placeholder="姓名(string)">
+			<input type="number" value="{{ age }}" placeholder="年龄(number)" on-input="toNumber">
+			<input type="text" value="{= info =}" placeholder="简介(string)">
+		</div>
+		<div class="button" on-click="clear()">移除信息</div>
+		<p>姓名：{{ name }}</p>
+		<p>年龄：{{ age }}</p>
+		<p>简介：{{ info }}</p>
+	</div>
+</template>
+
+<script>
+import {DataTypes} from 'san'
+export default {
+	initData() {
+		return{
+			name: undefined,
+			age: undefined,
+			info: undefined
+		}
+	},
+	dataTypes: {
+		name: DataTypes.string,
+		age: DataTypes.number,
+		info: DataTypes.string
+	},
+	clear: function(){
+		this.data.set('name', undefined)
+		this.data.set('age', undefined)
+		this.data.set('info', undefined)
+	},
+	toNumber(e){
+		let age = Number(e.target.value)
+		if(isNaN(age) || !age)
+			age = undefined
+		this.data.set('age', age)
+	}
+
+}
+</script>
+
+<style>
+.button{
+	display: inline-block;
+	background-color: grey;
+	cursor: pointer;
+}
+</style>
