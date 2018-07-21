@@ -1,0 +1,54 @@
+<template>
+	<div>
+		<ul>
+			<li s-for="item, index in items"  on-click="toggle(index)">
+				<div s-if="item.state" s-transition="transition('slide', 300)">
+					Listed element with transition effects.
+				</div>
+				<div s-else  s-transition="transition('slide', 300)">
+					{{item.name}}
+				</div>
+				
+			</li>
+		</ul>
+	</div>
+</template>
+
+<script>
+import {transition} from 'san-transition'
+export default{
+	initData() {
+		return{
+			items:[
+				{ name: "1", state: false},
+				{ name: "2", state: false},
+				{ name: "3", state: false},
+				{ name: "4", state: false},
+				{ name: "5", state: false},
+			],
+		}
+	},
+	transition,
+	toggle(index){
+		this.data.set("items["+index+"].state", !this.data.get("items["+index+"].state"))
+		console.log(this.data.get())
+	}
+}
+</script>
+
+<style>
+.slide-enter, .slide-leave{
+	transition: all 0.5s;
+}
+.slide-enter, .slide-before-leave{
+	opacity: 1;
+	transform: translate(0, 0);
+}
+.slide-before-enter, .slide-leave{
+	opacity: 0;
+	transform: translate(100px, 0);
+}
+li{
+	cursor: pointer;
+}
+</style>

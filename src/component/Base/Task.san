@@ -1,0 +1,21 @@
+<template>
+	<div class="task">
+		<header>{{items.name}}</header>
+		<div>标题：{{items.subtitle}}</div>
+		<div>内容：{{items.content}}</div>
+		<div>时间：{{items.time}}</div>
+	</div>
+</template>
+
+<script>
+export default{
+	initData(){
+		return {
+
+		}
+	}
+}	
+</script>
+
+<style>	
+</style>

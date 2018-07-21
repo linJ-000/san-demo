@@ -1,0 +1,20 @@
+<template>
+<div>
+	
+</div>
+</template>
+<script>
+export default{
+	initData() {
+		return{
+			title: "",
+			icon: "",
+			description: "",
+			open: false
+		}
+	}
+}
+</script>
+<style>
+	
+</style>

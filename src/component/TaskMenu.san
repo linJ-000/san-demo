@@ -1,0 +1,23 @@
+<template>
+	<div class="taskMenu">
+		<header>
+			<slot name="title"><div>{{title}}</div></slot>
+		</header>
+		<div class="main">
+			<slot name="task" s-for="item in items" var-name="item.name" var-subtitle="item.subtitle" var-content="item.content" var-time="item.time">
+				<div>{{name}}-{{subtitle}}-{{content}}-{{time}}</div>
+			</slot>
+		</div>
+	</div>
+</template>
+
+<script>
+export default{
+	initData(){
+		return {
+			title: "",
+			items: []
+		}
+	}
+}
+</script>

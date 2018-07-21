@@ -1,0 +1,102 @@
+<template>
+	<div class="main">
+		<hello/><br><hr><br>
+		<data-oper/><br><hr><br>
+		<cond-and-circ/><br><hr><br>
+		<style-ctrl/><br><hr><br>
+		<event-handle/><br><hr><br>
+		<san-input
+			placeholder="请输入用户名"
+			on-input="handleInput"
+		/><br><hr><br>
+		<task-menu title="{{test}}" items="{{items}}">
+			<div slot="task">
+				<header>{{name}}</header>
+				<div>标题：{{subtitle}}</div>
+				<div>内容：{{content}}</div>
+				<div>时间：{{time}}</div>
+			</div>	
+		</task-menu>
+		<task-menu items="{{items}}">
+			<div slot="title"><p>test</p> {{test}} <p>test</p></div>
+		</task-menu><br><hr><br>
+		<transition></transition>
+		<list-transition></list-transition>
+	</div>
+</template>
+
+<script>
+import Hello from './component/Hello.san'
+import DataOper from './component/DataOper.san'
+import CondAndCirc from './component/CondAndCirc.san'
+import StyleCtrl from './component/StyleCtrl.san'
+import EventHandle from './component/EventHandle.san'
+import SanInput from './component/SanInput.san'
+import TaskMenu from './component/TaskMenu.san'
+import Task from './component/Base/Task.san'
+import Transition from './component/Transition.san'
+import ListTransition from './component/ListTransition.san'
+
+export default{
+	initData() {
+		return{
+			value: "lalala",
+			test: "任务栏",
+			items: [
+				{
+					name: "任务一",
+					subtitle: "插槽",
+					content: "xxxxxx",
+					time: "2018-01-01"
+				},
+				{
+					name: "任务二",
+					subtitle: "插槽",
+					content: "xxxxxx",
+					time: "2018-01-01"
+				},
+				{
+					name: "任务三",
+					subtitle: "插槽",
+					content: "xxxxxx",
+					time: "2018-01-01"
+				},
+				{
+					name: "任务四",
+					subtitle: "插槽",
+					content: "xxxxxx",
+					time: "2018-01-01"
+				},
+				{
+					name: "任务五",
+					subtitle: "插槽",
+					content: "xxxxxx",
+					time: "2018-01-01"
+				},
+			]
+		}
+	},
+	components: {
+		'hello': Hello,
+		'data-oper': DataOper,
+		'cond-and-circ': CondAndCirc,
+		'style-ctrl': StyleCtrl,
+		'event-handle': EventHandle,
+		'san-input': SanInput,
+		'task-menu': TaskMenu,
+		'task': Task,
+		'transition': Transition,
+		'list-transition': ListTransition
+	},
+	handleInput(value){
+		console.log("value: "+ value)
+	}
+}
+</script>
+
+<style>
+body{
+	padding-bottom: 200px;
+}
+</style>
+

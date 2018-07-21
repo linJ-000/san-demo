@@ -1,0 +1,28 @@
+<template>
+	<div class="sanInput">
+		<input type="{{type}}"  
+			placeholder="{{placeholder}}"
+			value="{=value=}"
+			on-input="handleInput">
+	</div>
+</template>
+
+<script>
+export default {
+	initData () {
+		return {
+			type: 'text',
+			placeholder: "请输入文字",
+			value: ""
+		};
+	},
+	handleInput(){
+		/*通过input事件触发san-input组件的input事件*/
+		this.fire('input', this.data.get('value'))
+	}
+}
+</script>
+
+<style>
+	
+</style>
